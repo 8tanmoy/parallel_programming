@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+int countlen(char *ptr);
 int main (int argc, char *argv[])
 {
 	if (argc != 2)
@@ -9,16 +10,18 @@ int main (int argc, char *argv[])
 	}
 	
 	char *ch;
+	long num = 0;
 	ch = argv[1];
-	countlen(ch);
+	num = countlen(ch);
+	printf("%lu\n", num);
 	return(0);
 }
-countlen(char *ptr)
+int countlen(char *ptr)
 {
 	int j = 0;
 	while ( ptr[j] != '\0')
 	{
 		j++;
 	}
-	printf("%d\n", j);
+	return(j);
 }

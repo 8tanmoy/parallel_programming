@@ -21,11 +21,26 @@ debug : LDFLAGS := -fsanitize=address
 debug : ARCH :=
 debug : $(EXEC)
 
-all : Makefile $(EXEC)
+EXEC1    := problem1
+EXEC2	:= problem2
 
-%.o : %.c Makefile
+all : Makefile $(EXEC1).exe $(EXEC2).exe 
+
+$(EXEC1).o: $(EXEC1).c
 	@ echo Compiling $<...
-	$(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC1).exe: $(EXEC1).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC2).o: $(EXEC2).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC2).exe: $(EXEC2).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
 
 %.o : %.cpp Makefile
 	@ echo Compiling $<...
@@ -35,4 +50,4 @@ all : Makefile $(EXEC)
 
 .PHONY: clean
 clean:
-	@ rm -f $(EXEC) $(OBJS)
+	@ rm -f *.o *.exe
