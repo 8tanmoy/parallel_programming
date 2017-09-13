@@ -3,4 +3,4 @@
 0x7fffffffd8e7
 10
 266
-
+the command in line 18 stores the value of 1 in the next byte (because of being typecast to char) of the pointer location of arr[0]. So, arr[0] looks like this in memory: 00001010 00000001 00000000 00000000 , which is read as binary 0000000100001010 = decimal 266
