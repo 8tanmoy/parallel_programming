@@ -12,10 +12,10 @@ int main(int argc, char *argv[])
 {
 	if (argc == 1)
 	{
-		FILE *fp;
+		FILE *fpi;
 
-		fp = fopen("problem1.in", "r");
-		if (fp == NULL)
+		fpi = fopen("problem1.in", "r");
+		if (fpi == NULL)
 		{
 			puts("No data file");
 			exit(0);
@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
 		else
 		{
 			int N;
-			fscanf(fp, "%d", &N);
+			fscanf(fpi, "%d", &N);
 			printf("%d\n", N);
 			int A[N];
 			for (int k = 0; k < N; k++)
 			{
-				fscanf(fp, "%d", &A[k]);
+				fscanf(fpi, "%d", &A[k]);
 			}
 
 			clock_t start, end;
@@ -41,8 +41,16 @@ int main(int argc, char *argv[])
 			end = clock();
 			cpu_time = (end - start)/1000.0;
 			printf("%f\n", cpu_time);
+
+			FILE *fpo;
+			fpo = fopen("problem1.out","w");
+			for (int k = 0; k < N; k++)
+			{
+				fprintf(fpo, "%d\n", A[k]);
+			}
+			fclose(fpo);
 		}
-		fclose(fp);
+		fclose(fpi);
 	}
 	else if (argc == 2)
 	{
@@ -67,12 +75,22 @@ int main(int argc, char *argv[])
 		end = clock();
 		cpu_time = (end - start)/1000.0;
 		printf("%f\n", cpu_time);
+
+		FILE *fpo;
+		fpo = fopen("problem1.out","w");
+		for (int k = 0; k < N; k++)
+		{
+			fprintf(fpo, "%d\n", A[k]);
+		}
+		fclose(fpo);
+
 	}
 	else
 	{
 		puts("wrong number of arguments\n");
 		exit(0);
 	}
+
 	return(0);
 }
 int partition(int A[], int p, int r)
