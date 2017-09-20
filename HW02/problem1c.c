@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <math.h>
 
+long mpow(int b, int e);
 int swap(int *x, int *y);
 int partition(int A[], int p, int r);
 int sort(int A[], int p, int r);
@@ -22,10 +23,10 @@ int main(int argc, char *argv[])
 		{
 			struct timeval start, end;
 			unsigned long cpu_time;
-			int size = pow(2, N);
+			long size = mpow(2, N);
 			int *A = (int *) malloc(size * sizeof(int));
 			srand(time(NULL));
-			for (int k = 0; k < size; k++)
+			for (long k = 0; k < size; k++)
 			{
 				A[k] = rand();
 			}
@@ -35,14 +36,14 @@ int main(int argc, char *argv[])
 			gettimeofday(&end, NULL);
 			cpu_time = ((end.tv_sec - start.tv_sec)*1000000 + end.tv_usec - start.tv_usec);
 			//printf("%d\t%ld\t", size, cpu_time);
-			fprintf(fp, "%d\t%ld\t",size, cpu_time);
+			fprintf(fp, "%ld\t%ld\t",size, cpu_time);
 			free(A);
 
 			int *B = (int *) malloc(size * sizeof(int));
 			int p = 0;
 			int r = size - 1;
 			srand(time(NULL));
-			for (int l = 0; l < size; l++)
+			for (long l = 0; l < size; l++)
 			{
 				B[l] = rand();
 			}
@@ -100,4 +101,13 @@ int sort(int A[], int p, int r)
 		sort(A, q + 1, r);
 	}
 	return(0);
+}
+long mpow(int b, int e)
+{
+	long num = 1;
+	for (int i = 0; i < e; i++)
+	{
+		num = b*num;
+	}
+	return(num);
 }

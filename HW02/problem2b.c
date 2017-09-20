@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <math.h>
 
+long mpow(int b, int e);
 void scan(int in[], int N, unsigned long* cpu_time);
 int main(int argc, char* argv[])
 {
@@ -18,15 +19,15 @@ int main(int argc, char* argv[])
 		for (int j = 5; j < 13; j++)
 		{
 			unsigned long cpu_time;
-			int size = pow(2, j);
+			long size = mpow(2, j);
 			int A[size];
 			srand(time(NULL));
-			for (int k = 0; k < size; k++)
+			for (long k = 0; k < size; k++)
 			{
 				A[k] = (rand() % 21) - 10;
 			}
 			scan(A, size, &cpu_time);
-			fprintf(fp, "%d\t%ld\n",size, cpu_time);
+			fprintf(fp, "%ld\t%ld\n",size, cpu_time);
 		}
 		fclose(fp);
 	}
@@ -44,4 +45,13 @@ void scan(int in[], int N, unsigned long* cpu_time)
 	}
 	gettimeofday(&end, NULL);
 	*cpu_time = (end.tv_sec - start.tv_sec)*1000000 + end.tv_usec - start.tv_usec;
+}
+long mpow(int b, int e)
+{
+	long num = 1;
+	for (int i = 0; i < e; i++)
+	{
+		num = b*num;
+	}
+	return(num);
 }

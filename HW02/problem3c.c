@@ -47,12 +47,12 @@ int main(int argc, char* argv[])
 		fscanf(fi, "%d", &ftr[j]);
 	}
 	fclose(fi);
-	/*
+
 	int rsize = (imsize - fsize + 1);
 	int *rank = (int *) malloc(rsize * rsize * sizeof(int));
 	getRank(img, ftr, rank, imsize, fsize, rsize);
 	bestmatch(rank, rsize);
-	
+	/*
 	for (int l = 0; l < rsize; l++)
 	{
 		for (int m = 0; m < rsize; m++)
