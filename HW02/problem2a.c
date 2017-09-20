@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <sys/time.h>
 
-void scan(int in[], int N, int* last, float* cpu_time);
+void scan(int in[], int N, long* last, unsigned long* cpu_time);
 int printarray(int arr[], int N);
 int main(int argc, char* argv[])
 {
 	int N;
-	int last;
-	float cpu_time;
+	long last;
+	unsigned long cpu_time;
 	char* fname;
 	FILE *fp;
 
 	if (argc != 2)
 	{
 		printf("invalid number of arguments\n");
+		exit(0);
 	}
 	else
 	{
@@ -31,21 +32,21 @@ int main(int argc, char* argv[])
 	fclose(fp);
 	//printarray(in, N);
 	scan(in, N, &last, &cpu_time);
-	printf("%d\n%d\n%f\n", N, last, cpu_time);
+	printf("%d\n%ld\n%ld\n", N, last, cpu_time);
 	return(0);
 }
-void scan(int in[], int N, int* last, float* cpu_time)
+void scan(int in[], int N, long* last, unsigned long* cpu_time)
 {
-	int out[N];
+	long out[N];
 	out[0] = 0;
-	clock_t start, end;
-	start = clock();
+	struct timeval start, end;
+	gettimeofday(&start, NULL);
 	for (int i = 1; i < N; i++)
 	{
 		out[i] = in[i - 1] + out[i - 1];
 	}
-	end = clock();
-	*cpu_time = (end - start)/1000.0;
+	gettimeofday(&end, NULL);
+	*cpu_time = (end.tv_sec - start.tv_sec)*1000000 + end.tv_usec - start.tv_usec;
 	*last = out[N - 1];
 	//printarray(out, N);
 }

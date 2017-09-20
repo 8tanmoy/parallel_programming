@@ -21,11 +21,80 @@ debug : LDFLAGS := -fsanitize=address
 debug : ARCH :=
 debug : $(EXEC)
 
-all : Makefile $(EXEC)
+EXEC1    := problem1a
+EXEC2	:= problem1b
+EXEC3 := problem1c
+EXEC4 := problem2a
+EXEC5 := problem2b
+EXEC6 := problem3a
+EXEC7 := problem3b
+EXEC8 := problem3c
 
-%.o : %.c Makefile
+all : Makefile $(EXEC1).exe $(EXEC2).exe $(EXEC3).exe $(EXEC4).exe $(EXEC5).exe $(EXEC6).exe $(EXEC7).exe $(EXEC8).exe
+
+$(EXEC1).o: $(EXEC1).c
 	@ echo Compiling $<...
-	$(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC1).exe: $(EXEC1).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC2).o: $(EXEC2).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC2).exe: $(EXEC2).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC3).o: $(EXEC3).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC3).exe: $(EXEC3).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC4).o: $(EXEC4).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC4).exe: $(EXEC4).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC5).o: $(EXEC5).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC5).exe: $(EXEC5).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC6).o: $(EXEC6).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC6).exe: $(EXEC6).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC7).o: $(EXEC7).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC7).exe: $(EXEC7).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
+
+$(EXEC8).o: $(EXEC8).c
+	@ echo Compiling $<...
+	@ $(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+
+$(EXEC8).exe: $(EXEC8).o
+	@ echo Building $@...
+	@ $(CC) -o $@ $< $(LDFLAGS) $(LDFLAGS)
 
 %.o : %.cpp Makefile
 	@ echo Compiling $<...
@@ -35,4 +104,4 @@ all : Makefile $(EXEC)
 
 .PHONY: clean
 clean:
-	@ rm -f $(EXEC) $(OBJS)
+	@ rm -f *.o *.exe
