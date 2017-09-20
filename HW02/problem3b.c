@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 
 	//writeimg(img, ftr, imsize, fsize, "problem3-check.dat");
 	invert(img, imsize);
-	writeimg(img, ftr, imsize, fsize, "problem3b.dat");
+	writeimg(img, ftr, imsize, fsize, "problem3b.out");
 
 	free(img);
 	free(ftr);

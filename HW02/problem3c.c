@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <memory.h>
 
+void invert(int* img, int imsize);
 void getRank(int* img,int* ftr,int* rank,int imsize,int fsize,int rsize);
 int eleMult(int* buff, int* ftr, int fsize);
 void bestmatch(int* rank, int rsize);
@@ -35,9 +36,9 @@ int main(int argc, char* argv[])
 		exit(0);
 	}
 
-	//printf("reaading image from \"problem3b.dat\".\nWill fail if image size and feature size are different from problem3a and problem3b\n");
+	//printf("reaading image from \"problem3.dat\".\nWill fail if image size and feature size are different from problem3a\n");
 	FILE *fi;
-	fi = fopen("problem3b.dat","r");
+	fi = fopen("problem3.dat","r");
 	for (int i = 0; i < (imsize * imsize); i++)
 	{
 		fscanf(fi, "%d", &img[i]);
@@ -47,6 +48,8 @@ int main(int argc, char* argv[])
 		fscanf(fi, "%d", &ftr[j]);
 	}
 	fclose(fi);
+
+	invert(img, imsize);
 
 	int rsize = (imsize - fsize + 1);
 	int *rank = (int *) malloc(rsize * rsize * sizeof(int));
@@ -66,6 +69,17 @@ int main(int argc, char* argv[])
 	free(img);
 	free(ftr);
 	return(0);
+}
+void invert(int* img, int imsize)
+{
+	int *rowbuff = (int *) malloc(imsize * sizeof(int));
+	for (int i = 0; i < (imsize / 2); i++)
+	{
+		memcpy(rowbuff, &img[imsize * i], imsize * sizeof(int));
+		memcpy(&img[imsize * i], &img[(imsize - 1 - i) * imsize], imsize * sizeof(int));
+		memcpy(&img[(imsize - 1 - i) * imsize], rowbuff, imsize * sizeof(int));
+	}
+	free(rowbuff);
 }
 void getRank(int* img,int* ftr,int* rank,int imsize,int fsize,int rsize)
 {
