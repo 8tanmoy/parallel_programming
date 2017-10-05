@@ -13,6 +13,9 @@ CXXSTD	:= -std=c++11
 LDOPT 	:= $(OPT)
 LDFLAGS := 
 
+# Names of executables to create
+EXEC	:= problem1 problem2
+
 .DEFAULT_GOAL := all
 
 .PHONY: debug
@@ -25,13 +28,21 @@ all : Makefile $(EXEC)
 
 %.o : %.c Makefile
 	@ echo Compiling $<...
-	$(CC) $(CCSTD) $(WFLAGS) $(OPT) $(ARCH) $(CFLAGS) -c $< -o $@
+	$(CC) $(CCSTD) $(WFLAGS) $(OPT) -lm -fopenmp $(ARCH) $(CFLAGS) -c $< -o $@
 
 %.o : %.cpp Makefile
 	@ echo Compiling $<...
-	$(CXX) $(CXXSTD) $(WFLAGS) $(OPT) $(ARCH) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXSTD) $(WFLAGS) $(OPT) -lm -fopenmp $(ARCH) $(CXXFLAGS) -c $< -o $@
 
 # TODO: add targets for building executables
+problem1 : problem1.o
+	@ echo Building $@...
+	@ $(CXX) -lm -fopenmp -o $@ $< $(LDFLAGS)
+
+problem2 : problem2.o
+	@ echo Building $@...
+	@ $(CXX) -lm -fopenmp -o $@ $< $(LDFLAGS)
+
 
 .PHONY: clean
 clean:
