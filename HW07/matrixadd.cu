@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
 		printf("Error Usage ./problem2 u\n");
 	}
 	int u=atoi(argv[1]);
-	char filename[100]="/usr/local/share/759/problem2.inp";
+	char filename[100]="problem2.inp";
 
 	// Check command line for input matrix files
 	if(u==0) 
