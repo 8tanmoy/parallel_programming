@@ -1,0 +1,13 @@
+8tanmoy: problem1 built successfully +1
+8tanmoy: Problem 1  with args='128' PASSED +4
+8tanmoy: Problem 1  with args='512' PASSED +4
+8tanmoy: Problem 1  with args='1024' PASSED +4
+8tanmoy: found problem1.pdf, Problem 1 PASSED +1
+8tanmoy: problem2 built successfully +1
+8tanmoy: Problem 2  with args='128' PASSED +4
+8tanmoy: Problem 2  with args='512' PASSED +4
+8tanmoy: Problem 2  with args='727' PASSED +4
+8tanmoy: found problem2.pdf, Problem 2 PASSED +1
+8tanmoy: problem3 built successfully +1
+8tanmoy: Problem 3 PASSED +5
+8tanmoy: grade = 34/34 (100%)
