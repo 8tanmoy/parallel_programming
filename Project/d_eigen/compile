@@ -1,0 +1,2 @@
+module load eigen
+g++ -O3 -w -o d_eigen d_eigen.cpp

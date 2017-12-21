@@ -1,0 +1,2 @@
+module load eigen
+g++ -O3 -w -o eigen_serial eigen_serial.cpp

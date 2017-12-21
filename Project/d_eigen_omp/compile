@@ -1,0 +1,2 @@
+module load eigen
+g++ -O3 -fopenmp -w -o d_eigen_omp d_eigen_omp.cpp
