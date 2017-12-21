@@ -7,4 +7,5 @@ d_eigen				$ bash compile 		$ sbatch sub.sh 	davidson's method serial c++ eigen
 d_eigen_omp			$ bash compile		$ sbatch sub.sh 	davidson's method openmp c++ eigen
 cusolver			$ bash compile		$ sbatch sub.sh 	full matrix diagonalization with cusolver
 
+output files are inside the directories
 for additional descriptions and references, see source code comments
