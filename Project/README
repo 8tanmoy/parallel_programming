@@ -1,5 +1,5 @@
 Directory name		How to compile		How to run			Description
-________________________________________________________________________
+__________________________________________________________________________________________
 numpy				-			$ bash run			full matrix diagonalization with numpy
 d_python			-			$ bash run			davidson's method serial python
 eigen				$ bash compile		$ sbatch sub.sh 	full matrix diagonalization with c++ eigen
